@@ -25,7 +25,7 @@ async function displayFamilies() {
         // create three elements for each family, one for the whole family, one to hold the name, and one to hold the bunnies
         const familyEl = document.createElement('div');
         const nameEl = document.createElement('p');
-        const bunniesEl = document.createElement('p');
+        const bunniesEl = document.createElement('div');
         
         // add the bunnies css class to the bunnies el, and family css class to the family el
         bunniesEl.classList.add('bunnies');
@@ -47,20 +47,21 @@ async function displayFamilies() {
             bunnyEl.addEventListener('click', async() => {
                 await deleteBunny(bunny.id);
 
-                displayFamilies();
+                const redisplayFamilies = await getFamilies();
+
+                displayFamilies(redisplayFamilies);
             });
 
             // append this bunnyEl to the bunniesEl
             bunniesEl.append(bunnyEl);
         }
-
         // append the bunniesEl and nameEl to the familyEl
-        familyEl.append(nameEl, bunniesEl);
+        familyEl.append(nameEl, bunniesEl); 
+        
         // append the familyEl to the familiesEl
         familiesEl.append(familyEl);
 
     }
-
 }
 
 window.addEventListener('load', async() => {

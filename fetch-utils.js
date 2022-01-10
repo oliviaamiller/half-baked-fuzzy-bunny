@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const SUPABASE_URL = 'https://gxwgjhfyrlwiqakdeamc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
 
@@ -11,7 +12,7 @@ export async function getFamilies() {
     // fetch all families and their bunnies
     const response = await client 
         .from('loving_families')
-        .select();
+        .select('*, fuzzy_bunnies (*)');
 
     return checkError(response);    
 }
