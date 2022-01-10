@@ -45,25 +45,22 @@ async function displayFamilies() {
 
             // add an event listener to the bunny el. On click, delete the bunny, then refetch and redisplay all families.
             bunnyEl.addEventListener('click', async() => {
-                await deleteBunny();
+                await deleteBunny(bunny.id);
 
-                await getFamilies();
-
+                displayFamilies();
             });
 
-
+            // append this bunnyEl to the bunniesEl
+            bunniesEl.append(bunnyEl);
         }
 
-        
+        // append the bunniesEl and nameEl to the familyEl
+        familyEl.append(nameEl, bunniesEl);
+        // append the familyEl to the familiesEl
+        familiesEl.append(familyEl);
 
-        
-
-        // append this bunnyEl to the bunniesEl
     }
 
-    // append the bunniesEl and nameEl to the familyEl
-
-    // append the familyEl to the familiesEl
 }
 
 window.addEventListener('load', async() => {
