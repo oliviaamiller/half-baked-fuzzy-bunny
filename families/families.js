@@ -32,6 +32,7 @@ async function displayFamilies() {
         familyEl.classList.add('family');
 
         // put the family name in the name element
+        nameEl.textContent = family.name;
 
         // for each of this family's bunnies
 
