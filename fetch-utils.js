@@ -9,7 +9,10 @@ export async function getUser() {
 
 export async function getFamilies() {
     // fetch all families and their bunnies
-
+    const response = await client 
+        .from('fuzzy_bunnies')
+        .select();
+        
     return checkError(response);    
 }
 

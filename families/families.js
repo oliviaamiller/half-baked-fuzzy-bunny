@@ -14,15 +14,22 @@ logoutButton.addEventListener('click', () => {
     logout();
 });
 
-function displayFamilies() {
+async function displayFamilies() {
     // fetch families from supabase
+    const families = await getFamilies();
 
     // clear out the familiesEl
+    familiesEl.textContent = '';
 
     for (let family of families) {
         // create three elements for each family, one for the whole family, one to hold the name, and one to hold the bunnies
+        const familyEl = document.createElement('div');
+        const nameEl = document.createElement('p');
+        const bunniesEl = document.createElement('p');
         
         // add the bunnies css class to the bunnies el, and family css class to the family el
+        bunniesEl.classList.add('bunnies');
+        familyEl.classList.add('family');
 
         // put the family name in the name element
 
