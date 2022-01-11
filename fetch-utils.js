@@ -38,6 +38,13 @@ export async function createBunny(bunny) {
     return checkError(response);    
 }
 
+export async function createFamily(name) {
+    const response = await client
+        .from('loving_families')
+        .insert(name);
+
+    return checkError(response);
+}
 
 
 export async function checkAuth() {
