@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const SUPABASE_URL = 'https://gxwgjhfyrlwiqakdeamc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
 
@@ -9,12 +10,20 @@ export async function getUser() {
 
 export async function getFamilies() {
     // fetch all families and their bunnies
+    const response = await client 
+        .from('loving_families')
+        .select('*, fuzzy_bunnies (*)');
 
     return checkError(response);    
 }
 
 export async function deleteBunny(id) {
     // delete a single bunny using the id argument
+    const response = await client   
+        .from('fuzzy_bunnies')
+        .delete()
+        .match({ id: id })
+        .single();
 
     return checkError(response);    
 }
@@ -22,10 +31,20 @@ export async function deleteBunny(id) {
 
 export async function createBunny(bunny) {
     // create a bunny using the bunny argument
+    const response = await client
+        .from('fuzzy_bunnies')
+        .insert(bunny);
 
     return checkError(response);    
 }
 
+export async function createFamily(name) {
+    const response = await client
+        .from('loving_families')
+        .insert(name);
+
+    return checkError(response);
+}
 
 
 export async function checkAuth() {
